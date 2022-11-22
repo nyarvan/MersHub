@@ -1,0 +1,52 @@
+{% extends 'base_shop.html' %}
+
+{% block title %}
+    Доставка та оплата
+{% endblock %}
+
+{% block content %}
+        <main class="main__content_wrapper">
+
+        <!-- Start breadcrumb section -->
+        <section class="breadcrumb__section breadcrumb__bg">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="breadcrumb__content text-center">
+                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
+                                <li class="breadcrumb__content--menu__items"><a href="{% url 'shop:homepage' %}">Головна</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Доставка та оплата</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End breadcrumb section -->
+
+        <!-- Start info section -->
+        <div class="privacy__policy--section section--padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="privacy__policy--content">
+                            <h2 class="privacy__policy--content__title">Доставка</h2>
+                            <p class="privacy__policy--content__desc">Самовивіз замовленого вами товару здійснюється в офісах нашої Компанії. За попередньою згодою з вашим менеджером. Часом поставки запчастин вважаються тільки робочі дні. Доставка по Києву регіонам та областям, доставка з Європи 5-7 днів. Після надсилання ми Вам відправляємо смс із номером декларації.</p>
+                        </div>
+                        <div class="privacy__policy--content section_2">
+                            <h2 class="privacy__policy--content__title">Оплата</h2>
+                            <p class="privacy__policy--content__desc">Оплата здійснюється за такими способами:</p>
+                            <p class="privacy__policy--content__desc">- Безготівкова оплата рахунку у банках України, комісію за перерахування коштів оплачує платник згідно з тарифами банку</p>
+                            <p class="privacy__policy--content__desc">- Готівкою (в офісі при отриманні)</p>
+                            <p class="privacy__policy--content__desc">- Накладним платежем</p>
+                            <p class="privacy__policy--content__desc">Оплата приймається виключно у національній валюті – українській гривні. Реквізити рахунку на оплату надсилаються за допомогою SMS або електронної пошти після підтвердження замовлення. У призначенні платежу потрібно обов'язково вказувати номер замовлення, після оплати прохання повідомити нас будь-яким зручним для Вас способом за допомогою телефонного або електронного зв'язку, із зазначенням суми оплати та номера замовлення. Після оплати Ви отримуєте всі бухгалтерські документи, необхідні в рамках чинного законодавства.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End info section -->
+
+
+    </main>
+{% endblock %}

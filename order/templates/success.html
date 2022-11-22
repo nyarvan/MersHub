@@ -1,0 +1,29 @@
+{% extends 'base_order.html' %}
+{% load static %}
+
+{% block title %}
+    Оформлення замовлення успішне
+{% endblock %}
+
+{% block content %}
+
+    <main class="main__content_wrapper">
+        
+        <!-- Start error section -->
+        <section class="error__section section--padding">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="error__content text-center">
+                            <img class="error__content--img display-block mb-50" src="{% static 'img/other/success.png' %}" width="300px" alt="error-img">
+                            <h2 class="error__content--title">Ваше замовлення оформлено! <strong>Ми з вами зв'яжемося у найближчий час</strong> для підтверждення заказу. </h2>
+                            <a class="error__content--btn primary__btn" href="{% url 'shop:homepage' %}">Повернутися на головну</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End error section -->
+    </main>
+
+{% endblock %}

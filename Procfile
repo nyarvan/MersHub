@@ -1,0 +1,1 @@
+web: gunicorn MersHub.wsgi --log-file -

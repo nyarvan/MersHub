@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Сторінка не знайдена
+{% endblock %}
+
+{% block main %}
+    {% include 'inc/_nav.html' %}
+
+    <main class="main__content_wrapper">
+        
+        <!-- Start error section -->
+        <section class="error__section section--padding">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="error__content text-center">
+                            <img class="error__content--img display-block mb-50" src="{% static 'img/other/error.jpg' %}" alt="error-img">
+                            <h2 class="error__content--title">Упсссс ! Цієї сторінки не має </h2>
+                            <a class="error__content--btn primary__btn" href="{% url 'shop:homepage' %}">Повернутися на головну</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End error section -->
+    </main>
+
+    {% include 'inc/_footer.html' %}
+{% endblock %}

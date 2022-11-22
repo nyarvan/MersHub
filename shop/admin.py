@@ -27,7 +27,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['id', 'name']
     prepopulated_fields = {'slug': ('name', )}
     fields = ['id', 'category', 'name', 'slug', 'price', 'is_special', 'old_price', 'description', 'remark', 'image',
-              'color', 'count', 'used_quantity', 'available', 'best_seller', 'new_in']
+              'count', 'used_quantity', 'available', 'best_seller', 'new_in']
     inlines = [ProductImagesAdmin]
 
     def view_image(self, obj):

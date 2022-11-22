@@ -6,7 +6,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True, verbose_name='Название категории')
     slug = models.SlugField(max_length=100)
     image = models.ImageField(upload_to='images/category/', verbose_name='Фотография категории')
-    icon = models.ImageField(upload_to='images/category/icons/', null=True, verbose_name='Иконка категории')
+    icon = models.ImageField(upload_to='images/category/icons/', blank=True, null=True, verbose_name='Иконка категории')
     subcategory = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Категория')
 
     class Meta:

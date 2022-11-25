@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'robots',
     'django.contrib.sitemaps',
     'storages',
     'shop.apps.ShopConfig',

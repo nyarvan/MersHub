@@ -20,21 +20,21 @@ class Homepage(ListView):
         category = self.request.GET.get('category', '')
 
         if type_filter == 'Знижки' and category:
-            return Product.objects.filter(category__subcategory__slug=category, is_special=True)[:6]
+            return Product.objects.filter(category__subcategory__slug=category, is_special=True, available=True)[:6]
         elif type_filter == 'Знижки':
-            return Product.objects.filter(is_special=True)[:6]
+            return Product.objects.filter(is_special=True, available=True)[:6]
         elif type_filter == 'Новинки' and category:
-            return Product.objects.filter(category__subcategory__slug__exact=category, new_in=True)[:6]
+            return Product.objects.filter(category__subcategory__slug__exact=category, new_in=True, available=True)[:6]
         elif type_filter == 'Новинки':
-            return Product.objects.filter(new_in=True)[:6]
+            return Product.objects.filter(new_in=True, available=True)[:6]
         elif type_filter == 'Найбільше продаються' and category:
-            return Product.objects.filter(category__subcategory__slug__exact=category, best_seller=True)[:6]
+            return Product.objects.filter(category__subcategory__slug__exact=category, best_seller=True, available=True)[:6]
         elif type_filter == 'Найбільше продаються':
-            return Product.objects.filter(best_seller=True)[:6]
+            return Product.objects.filter(best_seller=True, available=True)[:6]
         elif category:
-            return Product.objects.filter(category__subcategory__slug__exact=category, is_special=True)[:6]
+            return Product.objects.filter(category__subcategory__slug__exact=category, is_special=True, available=True)[:6]
         else:
-            return Product.objects.filter(is_special=True)[:6]
+            return Product.objects.filter(is_special=True, available=True)[:6]
 
     def get_context_data(self, *, object_list=None, **kwargs):
         cart = Cart(self.request)
@@ -70,15 +70,15 @@ class ProductsListView(ListView):
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
             if price_lte and category.subcategory:
-                products = Product.objects.filter(category=category, price__lte=price_lte, price__gte=price_gte)
+                products = Product.objects.filter(category=category, price__lte=price_lte, price__gte=price_gte, available=True)
             elif price_lte and not category.subcategory:
-                products = Product.objects.filter(category__subcategory=category, price__lte=price_lte, price__gte=price_gte)
+                products = Product.objects.filter(category__subcategory=category, price__lte=price_lte, price__gte=price_gte, available=True)
             elif not category.subcategory:
-                products = Product.objects.filter(category__subcategory=category)
+                products = Product.objects.filter(category__subcategory=category, available=True)
             else:
-                products = Product.objects.filter(category=category)
+                products = Product.objects.filter(category=category, available=True)
         elif price_lte:
-            products = Product.objects.filter(price__lte=price_lte, price__gte=price_gte)
+            products = Product.objects.filter(price__lte=price_lte, price__gte=price_gte, available=True)
         else:
             products = Product.objects.all()
 
@@ -115,7 +115,7 @@ class SearchProductsView(ListView):
     def get_queryset(self):
         search_param = self.request.GET.get('search')
         return Product.objects.filter(Q(name__icontains=search_param) | Q(category__name__icontains=search_param) |
-                                      Q(category__subcategory__name__icontains=search_param) | Q(id__icontains=search_param))
+                                      Q(category__subcategory__name__icontains=search_param) | Q(id__icontains=search_param), available=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         cart = Cart(self.request)
@@ -137,7 +137,7 @@ class ProductDetailView(DetailView):
         product = self.get_object()
         images = ProductImages.objects.filter(product=product)
         products_be_like = Product.objects.exclude(id=product.id)\
-            .filter(category__subcategory=product.category.subcategory)
+            .filter(category__subcategory=product.category.subcategory, available=True)
 
         context['images'] = images
         context['products_be_like'] = products_be_like

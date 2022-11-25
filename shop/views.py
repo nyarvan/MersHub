@@ -137,7 +137,7 @@ class ProductDetailView(DetailView):
         product = self.get_object()
         images = ProductImages.objects.filter(product=product)
         products_be_like = Product.objects.exclude(id=product.id)\
-            .filter(category=product.category)
+            .filter(category__subcategory=product.category.subcategory)
 
         context['images'] = images
         context['products_be_like'] = products_be_like

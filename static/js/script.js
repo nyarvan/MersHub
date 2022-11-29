@@ -276,7 +276,8 @@ const footerWidgetAccordion = function () {
                 footerWidgetInner = footerWidget.querySelector ( ".footer__widget--inner" );
             footerWidget.classList.contains ( "active" ) ? ( footerWidget.classList.remove ( "active" ), slideUp ( footerWidgetInner ) ) : ( footerWidget.classList.add ( "active" ), slideDown ( footerWidgetInner ), getSiblings ( footerWidget ).forEach ( ( function ( item ) {
                 const footerWidgetInner = item.querySelector ( ".footer__widget--inner" );
-                item.classList.remove ( "active" ), slideUp ( footerWidgetInner )
+                item.classList.remove ( "active" ),
+                    slideUp ( footerWidgetInner )
             } ) ) )
         }
     } ) )

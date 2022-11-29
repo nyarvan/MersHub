@@ -57,7 +57,7 @@ var swiper = new Swiper ( ".hero__slider--activation" ,{
         pagination: { el: ".swiper-pagination" ,clickable: ! 0 }
     } ) ,swiper = new Swiper ( ".product__swiper--activation" ,{
         slidesPerView: 4 ,
-        loop: ! 0 ,
+        loop: ! 1 ,
         clickable: ! 0 ,
         spaceBetween: 30 ,
         breakpoints: {

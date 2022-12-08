@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'django.contrib.sites',
     'django.contrib.sitemaps',
     'storages',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'order.apps.OrderConfig'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

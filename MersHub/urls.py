@@ -16,6 +16,10 @@ info_dict = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap,
+         {'sitemaps': {'products': GenericSitemap(info_dict, priority=0.6),
+                       'static': StaticViewSitemap}},
+         name='django.contrib.sitemaps.views.sitemap'),
     path('', include('shop.urls', namespace='shop')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('order/', include('order.urls', namespace='order')),
@@ -23,10 +27,7 @@ urlpatterns = [
         "robots.txt",
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
-    path('sitemap.xml', sitemap,
-         {'sitemaps': {'shop.product': GenericSitemap(info_dict, priority=0.6),
-                       'static': StaticViewSitemap}},
-         name='django.contrib.sitemaps.views.sitemap'),
+
 ]
 
 if settings.DEBUG:

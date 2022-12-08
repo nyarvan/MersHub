@@ -7,6 +7,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import debug_toolbar
 from shop.models import Product
+from sitemaps import StaticViewSitemap
 
 info_dict = {
     'queryset': Product.objects.all(),
@@ -23,7 +24,8 @@ urlpatterns = [
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
     path('sitemap.xml', sitemap,
-         {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.6)}},
+         {'sitemaps': {'shop.product': GenericSitemap(info_dict, priority=0.6),
+                       'static': StaticViewSitemap}},
          name='django.contrib.sitemaps.views.sitemap'),
 ]
 

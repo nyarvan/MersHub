@@ -2531,6 +2531,10 @@ body.overlay__active::before,
   position: relative;
 }
 
+.categories__menu--items-hide{
+  opacity: 0;
+}
+
 .categories__menu--items:last-child .categories__menu--link {
   border-bottom: 0;
 }

@@ -7,7 +7,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import debug_toolbar
 from shop.models import Product
-from sitemaps import StaticViewSitemap
+from .sitemaps import StaticViewSitemap
 
 info_dict = {
     'queryset': Product.objects.all(),

@@ -136,7 +136,7 @@
                                                 </div>
                                             </td>
                                             <td class="cart__table--body__list">
-                                                <span class="cart__price">{{ product.price }} грн</span>
+                                                <span class="cart__price">{{ product.price }} $</span>
                                             </td>
                                         </tr>
                                         {% endwith %}
@@ -149,7 +149,7 @@
                                     <tbody class="checkout__total--body">
                                         <tr class="checkout__total--items">
                                             <td class="checkout__total--title text-left">До сплати</td>
-                                            <td class="checkout__total--amount text-right">{{ cart.get_total_price|floatformat:"2" }} грн</td>
+                                            <td class="checkout__total--amount text-right">{{ cart.get_total_price|floatformat:"2" }} $</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -62,7 +62,7 @@
                         <div class="price__filter--group">
                             <label class="price__filter--label" for="Filter-Price-GTE">Від</label>
                             <div class="price__filter--input">
-                                <span class="price__filter--currency">грн</span>
+                                <span class="price__filter--currency">$</span>
                                 <input class="price__filter--input__field border-0" name="price_gte" id="Filter-Price-GTE" type="number" placeholder="0" min="0" max="10000.00">
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="price__filter--group">
                             <label class="price__filter--label" for="Filter-Price-LTE">До</label>
                             <div class="price__filter--input">
-                                <span class="price__filter--currency">грн</span>
+                                <span class="price__filter--currency">$</span>
                                 <input class="price__filter--input__field border-0" name="price_lte" id="Filter-Price-LTE" type="number" min="0" placeholder="1250.00" max="10000.00">
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                         <div class="small__product--content">
                             <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{ product.name }}</a></h3>
                             <div class="small__product--card__price">
-                                <span class="current__price">{{ product.price }}</span>
+                                <span class="current__price">{{ product.price }} $</span>
                             </div>
                         </div>
                     </div>
@@ -217,10 +217,10 @@
                                                 <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{ product.name }}</a></h3>
                                                 <div class="product__card--price">
                                                     {% if product.is_special %}
-                                                    <span class="current__price">{{ product.price }} грн</span>
-                                                    <span class="old__price">{{ product.old_price }} грн</span>
+                                                    <span class="current__price">{{ product.price }} $</span>
+                                                    <span class="old__price">{{ product.old_price }} $</span>
                                                     {% else %}
-                                                        <span class="old__price">{{ product.price }} грн</span>
+                                                        <span class="old__price">{{ product.price }} $</span>
                                                     {% endif %}
                                                 </div>
                                                 <div class="product__card--footer">
@@ -257,10 +257,10 @@
                                                 <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{ product.name }}</a></h3>
                                                 <div class="product__list--price">
                                                     {% if product.is_special %}
-                                                    <span class="current__price">{{ product.price }} грн</span>
-                                                    <span class="old__price">{{ product.old_price }} грн</span>
+                                                    <span class="current__price">{{ product.price }} $</span>
+                                                    <span class="old__price">{{ product.old_price }} $</span>
                                                     {% else %}
-                                                        <span class="old__price">{{ product.price }} грн</span>
+                                                        <span class="old__price">{{ product.price }} $</span>
                                                     {% endif %}
                                                 </div>
                                                 <p class="product__card--content__desc mb-20">{{ product.description }}</p>

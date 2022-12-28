@@ -71,7 +71,7 @@
                                         </g>
                                     </svg>
                                     <span class="items__count">{{ cart|length }}</span>
-                                    <span class="minicart__btn--text">Кошик <br> <span class="minicart__btn--text__price">{{ cart.get_total_price }} грн</span></span>
+                                    <span class="minicart__btn--text">Кошик <br> <span class="minicart__btn--text__price">{{ cart.get_total_price }} $</span></span>
                                 </a>
                             </li>
                         </ul>
@@ -529,10 +529,10 @@
                         <span class="color__variant"><b>ID:</b> {{ product.id }}</span>
                         <div class="minicart__price">
                             {% if product.is_special %}
-                            <span class="minicart__current--price">{{ product.price }} грн</span>
-                            <span class="minicart__old--price">{{ product.old_price }} грн</span>
+                            <span class="minicart__current--price">{{ product.price }} $</span>
+                            <span class="minicart__old--price">{{ product.old_price }} $</span>
                             {% else %}
-                                <span class="minicart__old--price">{{ product.price }} грн</span>
+                                <span class="minicart__old--price">{{ product.price }} $</span>
                             {% endif %}
                         </div>
                         <div class="minicart__text--footer d-flex align-items-center">
@@ -549,7 +549,7 @@
             <div class="minicart__amount">
                 <div class="minicart__amount_list d-flex justify-content-between">
                     <span>До сплати:</span>
-                    <span><b>{{ cart.get_total_price|floatformat:"2" }} грн</b></span>
+                    <span><b>{{ cart.get_total_price|floatformat:"2" }} $</b></span>
                 </div>
             </div>
             <div class="minicart__conditions text-center"></div>

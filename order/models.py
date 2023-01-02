@@ -5,7 +5,8 @@ from shop.models import Product
 class Order(models.Model):
     DELIVERY_METHOD = [
         ('Самовывоз', 'Самовивозом'),
-        ('Новой почтой', 'Доставка Новою почтою')
+        ('Новой почтой', 'Доставка Новою почтою'),
+        ('Доставка', 'Доставка MERSHUB')
     ]
 
     PAYMENT_METHOD = [

@@ -5,7 +5,8 @@ from .models import Order
 class CreateOrderForm(forms.ModelForm):
     DELIVERY_METHOD = [
         ('Самовывоз', 'Самовивозом'),
-        ('Новой почтой', 'Доставка Новою почтою')
+        ('Новой почтой', 'Доставка Новою почтою'),
+        ('Доставка', 'Доставка MERSHUB')
     ]
 
     PAYMENT_METHOD = [

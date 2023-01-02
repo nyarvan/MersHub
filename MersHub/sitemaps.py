@@ -18,6 +18,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
         'delivery-payment': '/delivery-payment/',
         'guarantee': '/guarantee/'
     }
+
     main_sitemaps = []
     for page in pages.keys():
         sitemap_class = AbstractSitemapClass()

@@ -1,18 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
-from django.contrib.sitemaps import GenericSitemap
 from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 import debug_toolbar
-from shop.models import Product
-from .sitemaps import StaticViewSitemap
+from .sitemaps import StaticViewSitemap, CategorySitemap, ProductSitemap
 
-info_dict = {
-    'queryset': Product.objects.all(),
-    'date_field': 'created',
-}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,8 +18,9 @@ urlpatterns = [
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
     ),
     path('sitemap.xml', sitemap,
-         {'sitemaps': {'products': GenericSitemap(info_dict, priority=0.6),
-                       'static': StaticViewSitemap}},
+         {'sitemaps': {'static': StaticViewSitemap,
+                       'category': CategorySitemap,
+                       'products': ProductSitemap}},
          name='django.contrib.sitemaps.views.sitemap'),
 
 ]

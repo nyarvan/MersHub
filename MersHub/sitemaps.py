@@ -1,4 +1,5 @@
 from django.contrib import sitemaps
+from shop.models import Category, Product
 
 
 class AbstractSitemapClass:
@@ -28,3 +29,22 @@ class StaticViewSitemap(sitemaps.Sitemap):
 
     priority = 1
     changefreq = "yearly"
+
+
+class CategorySitemap(sitemaps.Sitemap):
+    changefreq = "weekly"
+    priority = 0.5
+
+    def items(self):
+        return Category.objects.all()
+
+
+class ProductSitemap(sitemaps.Sitemap):
+    changefreq = "daily"
+    priority = 0.6
+
+    def items(self):
+        return Product.objects.filter(is_draft=False)
+
+    def lastmod(self, obj):
+        return obj.created

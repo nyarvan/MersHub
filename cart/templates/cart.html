@@ -75,7 +75,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="cart__table--body__list">
-                                                    <span class="cart__price end">{% get_product_total_price product.id %}</span>
+                                                    <span class="cart__price end">{% get_product_total_price product.id %} $</span>
                                                 </td>
                                             </tr>
                                             {% endwith %}
@@ -95,7 +95,7 @@
                                             <tbody>
                                                 <tr class="cart__summary--total__list">
                                                     <td class="cart__summary--total__title text-left">До сплати</td>
-                                                    <td class="cart__summary--amount text-right">{{ cart.get_total_price|floatformat:"2" }}</td>
+                                                    <td class="cart__summary--amount text-right">{{ cart.get_total_price|floatformat:"2" }} $</td>
                                                 </tr>
                                             </tbody>
                                         </table>

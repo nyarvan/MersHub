@@ -32,15 +32,15 @@ class Homepage(ListView):
         elif type_filter == 'Найбільше продаються':
             return Product.objects.filter(best_seller=True, available=True)[:6]
         elif category:
-            return Product.objects.filter(category__subcategory__slug__exact=category, is_special=True, available=True)[:6]
+            return Product.objects.filter(category__subcategory__slug__exact=category, new_in=True, available=True)[:6]
         else:
-            return Product.objects.filter(is_special=True, available=True)[:6]
+            return Product.objects.filter(new_in=True, available=True)[:6]
 
     def get_context_data(self, *, object_list=None, **kwargs):
         cart = Cart(self.request)
         type_filter = self.request.GET.get('filter', '')
         if not type_filter:
-            type_filter = 'Знижки'
+            type_filter = 'Новинки'
 
         context = super().get_context_data(**kwargs)
         categories = Category.objects.annotate(count=Count('category__product')).filter(subcategory=None)

@@ -101,6 +101,7 @@
         <!-- End categories section -->
 
         <!-- Start product section -->
+        {% if specials %}
         <section class="product__section section--padding  pt-0">
             <div class="container">
                 <div class="section__heading border-bottom mb-30">
@@ -146,6 +147,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
         <!-- End product section -->
 
         <!-- Start product section -->
@@ -154,6 +156,14 @@
                 <div class="section__heading section__heading--flex border-bottom d-flex justify-content-between mb-30">
                     <h2 class="section__heading--maintitle">Mersedes <span>деталі</span></h2>
                     <ul class="nav tab__btn--wrapper" role="tablist">
+                        <li class="tab__btn--item" role="presentation">
+                            {% if type_filter == 'Новинки' %}
+                          <a href="?{% param_replace filter='Новинки' %}" class="tab__btn--link active">
+                            Новинки</a>
+                            {% else %}
+                          <a href="?{% param_replace filter='Новинки' %}" class="tab__btn--link">Новинки</a>
+                            {% endif %}
+                        </li>
                         <li class="tab__btn--item" role="presentation">
                             {% if type_filter == 'Знижки' %}
                             <a href="?{% param_replace filter='Знижки' %}" class="tab__btn--link active"> Знижки</a>
@@ -166,14 +176,6 @@
                           <a href="?{% param_replace filter='Найбільше продаються' %}" class="tab__btn--link active">Найбільше продаються</a>
                             {% else %}
                           <a href="?{% param_replace filter='Найбільше продаються' %}" class="tab__btn--link">Найбільше продаються</a>
-                            {% endif %}
-                        </li>
-                        <li class="tab__btn--item" role="presentation">
-                            {% if type_filter == 'Новинки' %}
-                          <a href="?{% param_replace filter='Новинки' %}" class="tab__btn--link active">
-                            Новинки</a>
-                            {% else %}
-                          <a href="?{% param_replace filter='Новинки' %}" class="tab__btn--link">Новинки</a>
                             {% endif %}
                         </li>
                       </ul>

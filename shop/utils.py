@@ -1,6 +1,7 @@
 import openpyxl
 from slugify import slugify
-from MersHub.settings import MEDIA_URL
+import boto3
+from MersHub.settings import MEDIA_URL, STATIC_ROOT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME
 from shop.models import Category, Product
 
 category_dict = {
@@ -26,8 +27,15 @@ category_dict = {
     'Радиаторы': 'Вентилятор радіаторів'
 }
 
-def excel_products(filename, min_col, max_col, min_row):
-    wb = openpyxl.load_workbook(f'{MEDIA_URL}//images//files//{filename}')
+
+def download_excel(filename):
+    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3.download_file(AWS_STORAGE_BUCKET_NAME, f'files/{filename}', f'{STATIC_ROOT}/files/{filename}')
+
+
+def excel_products(filename, min_col=2, max_col=6, min_row=2):
+    download_excel(filename)
+    wb = openpyxl.load_workbook(f'{STATIC_ROOT}/files/{filename}')
     ws = wb.active
 
     for page in wb.sheetnames:

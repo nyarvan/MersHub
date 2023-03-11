@@ -1,6 +1,6 @@
 import openpyxl
 from slugify import slugify
-from MersHub.settings import MEDIA_ROOT
+from MersHub.settings import MEDIA_URL
 from shop.models import Category, Product
 
 category_dict = {
@@ -27,7 +27,7 @@ category_dict = {
 }
 
 def excel_products(filename, min_col, max_col, min_row):
-    wb = openpyxl.load_workbook(f'F:\\Work\\Projects\\MersHub_local\\media\\images\\files\\{filename}')
+    wb = openpyxl.load_workbook(f'{MEDIA_URL}/images/files/{filename}')
     ws = wb.active
 
     for page in wb.sheetnames:

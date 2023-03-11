@@ -89,7 +89,7 @@
                     <div class="col">
                         <div class="product__details--info">
                             <form action="{% url 'cart:cart_add' product_slug=product.slug %}" method="GET">
-                                <h2 class="product__details--info__title mb-15">{{special.id}}-{{ product.name }}</h2>
+                                <h2 class="product__details--info__title mb-15">{{product.id}}-{{ product.name }}</h2>
                                 <div class="product__details--info__price mb-12">
                                     {% if product.is_special %}
                                         <span class="current__price">{{ product.price }} $</span>

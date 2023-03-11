@@ -245,7 +245,7 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="product__card--content">
-                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{special.id}}-{{ product.name }}</a></h3>
+                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
                                                         <div class="product__card--price">
                                                             {% if product.is_special %}
                                                                 <span class="current__price">{{ product.price }} $</span>

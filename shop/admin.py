@@ -20,7 +20,7 @@ class ProductImagesAdmin(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'category', 'name', 'price', 'is_special', 'count', 'available', 'best_seller', 'new_in']
+    list_display = ['id', 'category', 'name', 'image', 'price', 'is_special', 'count', 'available', 'best_seller', 'new_in']
     list_filter = ['category', 'is_special', 'available', 'best_seller', 'new_in']
     list_editable = ['name', 'price', 'is_special', 'count', 'available', 'best_seller', 'new_in']
     list_display_links = ['id', ]

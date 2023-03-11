@@ -17,7 +17,7 @@
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
                                 <li class="breadcrumb__content--menu__items"><a href="{% url 'shop:homepage' %}">Головна</a></li>
                                 <li class="breadcrumb__content--menu__items"><a href="{% url 'shop:products_by_category' slug_category=product.category.slug %}">{{ product.category.name }}</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>{{ product.name }}</span></li>
+                                <li class="breadcrumb__content--menu__items"><span>{{special.id}}-{{ product.name }}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div class="col">
                         <div class="product__details--info">
                             <form action="{% url 'cart:cart_add' product_slug=product.slug %}" method="GET">
-                                <h2 class="product__details--info__title mb-15">{{ product.name }}</h2>
+                                <h2 class="product__details--info__title mb-15">{{special.id}}-{{ product.name }}</h2>
                                 <div class="product__details--info__price mb-12">
                                     {% if product.is_special %}
                                         <span class="current__price">{{ product.price }} $</span>

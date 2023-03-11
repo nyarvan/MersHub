@@ -120,7 +120,7 @@
                                     <span class="product__badge">-{{ special.price_percentage|floatformat:'0' }}%</span>
                                 </div>
                                 <div class="product__card--content">
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{ special.name }} </a></h3>
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{special.id}}-{{ special.name }} </a></h3>
                                     <div class="product__card--price">
                                         <span class="current__price">{{ special.price }} $</span>
                                         <span class="old__price"> {{ special.old_price }} $</span>
@@ -245,7 +245,7 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="product__card--content">
-                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{ product.name }}</a></h3>
+                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{special.id}}-{{ product.name }}</a></h3>
                                                         <div class="product__card--price">
                                                             {% if product.is_special %}
                                                                 <span class="current__price">{{ product.price }} $</span>

@@ -27,7 +27,7 @@ category_dict = {
 }
 
 def excel_products(filename, min_col, max_col, min_row):
-    wb = openpyxl.load_workbook(f'{MEDIA_URL}/images/files/{filename}')
+    wb = openpyxl.load_workbook(f'{MEDIA_URL}//images//files//{filename}')
     ws = wb.active
 
     for page in wb.sheetnames:

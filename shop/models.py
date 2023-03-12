@@ -30,7 +30,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     is_special = models.BooleanField(default=False, verbose_name='Скидка')
     old_price = models.DecimalField(max_digits=10, blank=True, null=True, decimal_places=2, verbose_name='Старая цена')
-    description = models.TextField(null=True, blank=True, verbose_name='Описание')
+    description = models.TextField(blank=True, verbose_name='Описание')
     remark = models.TextField(null=True, blank=True, verbose_name='Примечание')
     image = models.ImageField(upload_to=f'images/products/', verbose_name='Фотография', default='images/products/no-image.png')
     count = models.IntegerField(verbose_name='Количество на складе')

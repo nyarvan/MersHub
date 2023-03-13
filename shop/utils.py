@@ -3,6 +3,7 @@ from slugify import slugify
 import boto3
 from MersHub.settings import MEDIA_URL, STATIC_ROOT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME
 from shop.models import Category, Product
+import os.path
 
 category_dict = {
     'Капоты': 'Капот',
@@ -34,7 +35,8 @@ def download_excel(filename):
 
 
 def excel_products(filename, min_col=2, max_col=6, min_row=2):
-    download_excel(filename)
+    if not os.path.exists('{STATIC_ROOT}\\files\\{filename}'):
+        download_excel(filename)
     wb = openpyxl.load_workbook(f'{STATIC_ROOT}\\files\\{filename}')
     ws = wb.active
 

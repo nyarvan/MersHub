@@ -48,7 +48,7 @@ def excel_products(filename, min_col=2, max_col=6, min_row=2):
         download_excel(filename)
     wb = openpyxl.load_workbook(f'{STATIC_ROOT}\\files\\{filename}')
     ws = wb.active
-    count = 0
+    products_cnt = 0
 
     for page in wb.sheetnames:
         if page not in category_dict.keys():
@@ -69,6 +69,6 @@ def excel_products(filename, min_col=2, max_col=6, min_row=2):
                     product = Product.objects.filter(id=row[0]).exists()
                     if not product:
                         Product.objects.create(category=category.first(), id=id, slug=slugify(f'{id}-{name}'), name=name, price=price, count=count, used_quantity=used_quantity)
-                        count += 1
+                        products_cnt += 1
 
-    return f'{count} products have been added to the site'
+    return f'{products_cnt} products have been added to the site'

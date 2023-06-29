@@ -79,7 +79,7 @@ def excel_products(filename, min_col=2, max_col=6, min_row=2):
             used_quantity = row[4]
             
             if isinstance(id, str) and isinstance(price, (int, float)) and isinstance(count, int) and isinstance(used_quantity, int):
-                if id and price and count and len(id) == 11 and count > 0:
+                if id and count and len(id) == 11 and count > 0:
                     product = Product.objects.filter(id=row[0]).exists()
                     if not product:
                         Product.objects.create(category=category.first(), id=id, slug=slugify(f'{id}-{name}'), name=name, price=price, count=count, used_quantity=used_quantity)

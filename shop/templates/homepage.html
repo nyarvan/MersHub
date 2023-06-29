@@ -120,7 +120,11 @@
                                     <span class="product__badge">-{{ special.price_percentage|floatformat:'0' }}%</span>
                                 </div>
                                 <div class="product__card--content">
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{special.id}}-{{ special.name }} </a></h3>
+                                    {% if special.name %}
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{special.id}} | {{ special.name }}</a></h3>
+                                    {% else %}
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{special.id}} | {{ special.category.name }}</a></h3>
+                                    {% endif %}
                                     <div class="product__card--price">
                                         {% if special.is_special and special.price %}
                                         <span class="current__price">{{ special.price }} $</span>
@@ -251,7 +255,11 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="product__card--content">
-                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
+                                                        {% if product.name %}
+                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.name }}</a></h3>
+                                                        {% else %}
+                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.category.name }}</a></h3>
+                                                        {% endif %}
                                                         <div class="product__card--price">
                                                             {% if product.is_special and product.price %}
                                                             <span class="current__price">{{ product.price }} $</span>

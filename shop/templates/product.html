@@ -93,7 +93,11 @@
                     <div class="col">
                         <div class="product__details--info">
                             <form action="{% url 'cart:cart_add' product_slug=product.slug %}" method="GET">
-                                <h2 class="product__details--info__title mb-15">{{product.id}}-{{ product.name }}</h2>
+                                {% if product.name %}
+                                <h2 class="product__details--info__title mb-15">{{product.id}} | {{ product.name }}</h2>
+                                {% else %}
+                                <h2 class="product__details--info__title mb-15">{{product.id}} | {{ product.category.name }}</h2>
+                                {% endif %}
                                 <div class="product__details--info__price mb-12">
                                     {% if product.is_special and product.price %}
                                         <span class="current__price">{{ product.price }} $</span>
@@ -147,7 +151,11 @@
                                 <div id="description" class="tab_pane active show">
                                     <div class="product__tab--content">
                                         <div class="product__tab--content__step mb-30">
+                                            {% if product.name %}
                                             <h2 class="product__tab--content__title h4 mb-10">{{ product.name }}</h2>
+                                            {% else %}
+                                            <h2 class="product__tab--content__title h4 mb-10">{{ product.id }}</h2>
+                                            {% endif %}
                                             <p class="product__tab--content__desc">{{ product.description }}</p>
                                         </div>
                                     </div>
@@ -202,7 +210,11 @@
                                     {% endif %}
                                 </div>
                                 <div class="product__card--content">
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{{ item.name }}</a></h3>
+                                    {% if item.name %}
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{{ item.id }} | {{ item.name }}</a></h3>
+                                    {% else %}
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{{ item.id }} | {{ item.category.name }}</a></h3>
+                                    {% endif %}
                                     <div class="product__card--price">
                                         {% if item.is_special and item.price %}
                                             <span class="current__price">{{ item.price }} $</span>

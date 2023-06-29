@@ -90,7 +90,11 @@
                             <a class="display-block" href="{% url 'shop:product' slug=product.slug %}"><img src="{{ product.image.url }}" alt="product-img"></a>
                         </div>
                         <div class="small__product--content">
-                            <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
+                            {% if  %}
+                            <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.name }}</a></h3>
+                            {% else %}
+                            <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{product.category.name}}</a></h3>
+                            {% endif %}
                             <div class="small__product--card__price">
                                 {% if product.price %}
                                     <span class="current__price">{{ product.price }} $</span>
@@ -219,7 +223,11 @@
                                                 {% endif %}
                                             </div>
                                             <div class="product__card--content">
-                                                <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
+                                                {% if product.name %}
+                                                <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.name }}</a></h3>
+                                                {% else %}
+                                                <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{product.category.name}}</a></h3>
+                                                {% endif %}
                                                 <div class="product__card--price">
                                                     {% if product.is_special and product.price %}
                                                     <span class="current__price">{{ product.price }} $</span>
@@ -261,7 +269,11 @@
                                                 {% endif %}
                                             </div>
                                             <div class="product__card--content product__list--content">
-                                                <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
+                                                {% if product.name %}
+                                                <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.name }}</a></h3>
+                                                {% else %}
+                                                <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.category.name }}</a></h3>
+                                                {% endif %}
                                                 <div class="product__list--price">
                                                     {% if product.is_special and product.price %}
                                                     <span class="current__price">{{ product.price }} $</span>

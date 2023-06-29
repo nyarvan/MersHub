@@ -129,7 +129,11 @@
                                                         <span class="product__thumbnail--quantity">{{ item.count }}</span>
                                                     </div>
                                                     <div class="product__description">
+                                                        {% if product.name %}
                                                         <h4 class="product__description--name"><a href="{% url 'shop:product' slug=product.slug %}">{{ product.name }}</a></h4>
+                                                        {% else %}
+                                                        <h4 class="product__description--name"><a href="{% url 'shop:product' slug=product.slug %}">{{ product.id }}</a></h4>
+                                                        {% endif %}
                                                         <span class="product__description--variant">Тип: {{ product.category }}</span>
                                                         <span class="product__description--variant">ID: {{ product.id }}</span>
                                                     </div>

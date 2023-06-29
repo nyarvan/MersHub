@@ -90,7 +90,7 @@
                             <a class="display-block" href="{% url 'shop:product' slug=product.slug %}"><img src="{{ product.image.url }}" alt="product-img"></a>
                         </div>
                         <div class="small__product--content">
-                            {% if  %}
+                            {% if product.name %}
                             <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.name }}</a></h3>
                             {% else %}
                             <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{product.category.name}}</a></h3>

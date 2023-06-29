@@ -17,7 +17,11 @@
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
                                 <li class="breadcrumb__content--menu__items"><a href="{% url 'shop:homepage' %}">Головна</a></li>
                                 <li class="breadcrumb__content--menu__items"><a href="{% url 'shop:products_by_category' slug_category=product.category.slug %}">{{ product.category.name }}</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>{{special.id}}-{{ product.name }}</span></li>
+                                {% if product.name %}
+                                    <li class="breadcrumb__content--menu__items"><span>{{product.id}} | {{ product.name }}</span></li>
+                                {% else %}
+                                    <li class="breadcrumb__content--menu__items"><span>{{ product.id }}</span></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -91,9 +95,11 @@
                             <form action="{% url 'cart:cart_add' product_slug=product.slug %}" method="GET">
                                 <h2 class="product__details--info__title mb-15">{{product.id}}-{{ product.name }}</h2>
                                 <div class="product__details--info__price mb-12">
-                                    {% if product.is_special %}
+                                    {% if product.is_special and product.price %}
                                         <span class="current__price">{{ product.price }} $</span>
                                         <span class="old__price">{{ product.old_price }} $</span>
+                                    {% elif not product.price %}
+                                        <span class="old__price">Договірна</span>
                                     {% else %}
                                         <span class="old__price">{{ product.price }} $</span>
                                     {% endif %}
@@ -191,18 +197,20 @@
                                         <img class="product__card--thumbnail__img product__primary--img" src="{{ item.image.url }}" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img" src="{{ item.image.url }}" alt="product-img">
                                     </a>
-                                    {% if product.is_special %}
-                                        <span class="product__badge">-{{ product.price_percentage|floatformat:'0' }}%</span>
+                                    {% if item.is_special %}
+                                        <span class="product__badge">-{{ item.price_percentage|floatformat:'0' }}%</span>
                                     {% endif %}
                                 </div>
                                 <div class="product__card--content">
                                     <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{{ item.name }}</a></h3>
                                     <div class="product__card--price">
-                                        {% if product.is_special %}
-                                            <span class="current__price">{{ product.price }} $</span>
-                                            <span class="old__price">{{ product.old_price }} $</span>
+                                        {% if item.is_special and item.price %}
+                                            <span class="current__price">{{ item.price }} $</span>
+                                            <span class="old__price">{{ item.old_price }} $</span>
+                                        {% elif not item.price %}
+                                            <span class="old__price">Договірна</span>
                                         {% else %}
-                                            <span class="old__price">{{ product.price }} $</span>
+                                            <span class="old__price">{{ item.price }} $</span>
                                         {% endif %}
                                     </div>
                                     <div class="product__card--footer">

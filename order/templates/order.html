@@ -136,7 +136,11 @@
                                                 </div>
                                             </td>
                                             <td class="cart__table--body__list">
+                                                {% if product.price %}
                                                 <span class="cart__price">{{ product.price }} $</span>
+                                                {% else %}
+                                                <span class="cart__price">Договірна</span>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                         {% endwith %}
@@ -149,7 +153,11 @@
                                     <tbody class="checkout__total--body">
                                         <tr class="checkout__total--items">
                                             <td class="checkout__total--title text-left">До сплати</td>
+                                            {% if cart.get_total_price %}
                                             <td class="checkout__total--amount text-right">{{ cart.get_total_price|floatformat:"2" }} $</td>
+                                            {% else %}
+                                            <td class="checkout__total--amount text-right">Договірна</td>
+                                            {% endif %}
                                         </tr>
                                     </tbody>
                                 </table>

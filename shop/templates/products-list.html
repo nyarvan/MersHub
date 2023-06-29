@@ -92,7 +92,12 @@
                         <div class="small__product--content">
                             <h3 class="small__product--card__title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
                             <div class="small__product--card__price">
-                                <span class="current__price">{{ product.price }} $</span>
+                                {% if product.price %}
+                                    <span class="current__price">{{ product.price }} $</span>
+                                {% else %}
+                                    <span class="current__price">Договірна</span>
+                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>
@@ -216,11 +221,13 @@
                                             <div class="product__card--content">
                                                 <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
                                                 <div class="product__card--price">
-                                                    {% if product.is_special %}
+                                                    {% if product.is_special and product.price %}
                                                     <span class="current__price">{{ product.price }} $</span>
                                                     <span class="old__price">{{ product.old_price }} $</span>
+                                                    {% elif not product.price %}
+                                                    <span class="old__price">Договірна</span>
                                                     {% else %}
-                                                        <span class="old__price">{{ product.price }} $</span>
+                                                    <span class="old__price">{{ product.price }} $</span>
                                                     {% endif %}
                                                 </div>
                                                 <div class="product__card--footer">
@@ -256,11 +263,13 @@
                                             <div class="product__card--content product__list--content">
                                                 <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}}-{{ product.name }}</a></h3>
                                                 <div class="product__list--price">
-                                                    {% if product.is_special %}
+                                                    {% if product.is_special and product.price %}
                                                     <span class="current__price">{{ product.price }} $</span>
                                                     <span class="old__price">{{ product.old_price }} $</span>
+                                                    {% elif not product.price %}
+                                                    <span class="old__price">Договірна</span>
                                                     {% else %}
-                                                        <span class="old__price">{{ product.price }} $</span>
+                                                    <span class="old__price">{{ product.price }} $</span>
                                                     {% endif %}
                                                 </div>
                                                 <p class="product__card--content__desc mb-20">{{ product.description }}</p>

@@ -94,9 +94,9 @@
                         <div class="product__details--info">
                             <form action="{% url 'cart:cart_add' product_slug=product.slug %}" method="GET">
                                 {% if product.name %}
-                                <h2 class="product__details--info__title mb-15">{{product.id}} | {{ product.name }}</h2>
+                                <h2 class="product__details--info__title mb-15">{% if product.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{product.id}} | {{ product.name }}</h2>
                                 {% else %}
-                                <h2 class="product__details--info__title mb-15">{{product.id}} | {{ product.category.name }}</h2>
+                                <h2 class="product__details--info__title mb-15">{% if product.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{product.id}} | {{ product.category.name }}</h2>
                                 {% endif %}
                                 <div class="product__details--info__price mb-12">
                                     {% if product.is_special and product.price %}
@@ -211,9 +211,9 @@
                                 </div>
                                 <div class="product__card--content">
                                     {% if item.name %}
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{{ item.id }} | {{ item.name }}</a></h3>
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{% if product.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{ item.id }} | {{ item.name }}</a></h3>
                                     {% else %}
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{{ item.id }} | {{ item.category.name }}</a></h3>
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=item.slug %}">{% if product.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{ item.id }} | {{ item.category.name }}</a></h3>
                                     {% endif %}
                                     <div class="product__card--price">
                                         {% if item.is_special and item.price %}

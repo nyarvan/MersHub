@@ -121,9 +121,9 @@
                                 </div>
                                 <div class="product__card--content">
                                     {% if special.name %}
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{special.id}} | {{ special.name }}</a></h3>
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{% if special.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{special.id}} | {{ special.name }}</a></h3>
                                     {% else %}
-                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{{special.id}} | {{ special.category.name }}</a></h3>
+                                    <h3 class="product__card--title"><a href="{% url 'shop:product' slug=special.slug %}">{% if special.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{special.id}} | {{ special.category.name }}</a></h3>
                                     {% endif %}
                                     <div class="product__card--price">
                                         {% if special.is_special and special.price %}
@@ -256,9 +256,9 @@
                                                     </div>
                                                     <div class="product__card--content">
                                                         {% if product.name %}
-                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.name }}</a></h3>
+                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{% if product.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{product.id}} | {{ product.name }}</a></h3>
                                                         {% else %}
-                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{{product.id}} | {{ product.category.name }}</a></h3>
+                                                        <h3 class="product__card--title"><a href="{% url 'shop:product' slug=product.slug %}">{% if product.is_used %}<span class="product__details--info__used">Б/У</span>{% endif %} {{product.id}} | {{ product.category.name }}</a></h3>
                                                         {% endif %}
                                                         <div class="product__card--price">
                                                             {% if product.is_special and product.price %}

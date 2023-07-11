@@ -20,13 +20,13 @@ class ProductImagesAdmin(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'category', 'name', 'image', 'price', 'is_special', 'count', 'available', 'best_seller', 'new_in']
-    list_filter = ['category', 'is_special', 'available', 'best_seller', 'new_in']
-    list_editable = ['name', 'price', 'is_special', 'count', 'available', 'best_seller', 'new_in']
+    list_display = ['id', 'category', 'name', 'is_used', 'image', 'price', 'is_special', 'count', 'available', 'best_seller', 'new_in']
+    list_filter = ['category', 'is_special', 'is_used', 'available', 'best_seller', 'new_in']
+    list_editable = ['name', 'price', 'is_used', 'is_special', 'count', 'available', 'best_seller', 'new_in']
     list_display_links = ['id', ]
     search_fields = ['id', 'name']
     prepopulated_fields = {'slug': ('name', )}
-    fields = ['id', 'category', 'name', 'slug', 'price', 'is_special', 'old_price', 'description', 'remark', 'image',
+    fields = ['id', 'category', 'name', 'slug', 'is_used', 'price', 'is_special', 'old_price', 'description', 'remark', 'image',
               'count', 'used_quantity', 'available', 'best_seller', 'new_in']
     inlines = [ProductImagesAdmin]
 

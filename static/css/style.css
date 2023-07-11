@@ -9893,6 +9893,15 @@ input.quickview__value--number {
   }
 }
 
+.product__details--info__used {
+  padding: 0 20px;
+  margin-right: 15px;
+  border: 1px solid grey;
+  color: grey;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .variant__buy--now__btn {
   width: 100%;
   font-size: 1.5rem;

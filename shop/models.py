@@ -23,12 +23,13 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    id = models.CharField(max_length=15, primary_key=True, db_index=True, unique=True)
+    id = models.CharField(max_length=35, primary_key=True, db_index=True, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
     name = models.CharField(null=True, blank=True, max_length=150, verbose_name='Название детали')
     slug = models.SlugField(max_length=150)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     is_special = models.BooleanField(default=False, verbose_name='Скидка')
+    is_used = models.BooleanField(default=False, verbose_name='Б/У')
     old_price = models.DecimalField(max_digits=10, blank=True, null=True, decimal_places=2, verbose_name='Старая цена')
     description = models.TextField(blank=True, verbose_name='Описание')
     remark = models.TextField(blank=True, verbose_name='Примечание')

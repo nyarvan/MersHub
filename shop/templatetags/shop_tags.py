@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.simple_tag()
 def get_categories():
-    return Category.objects.filter(subcategory=None)
+    return Category.objects.filter(subcategory=None).order_by('-name')
 
 
 @register.simple_tag()

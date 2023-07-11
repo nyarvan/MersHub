@@ -1,4 +1,5 @@
 {% load static %}
+{% load shop_tags %}
 <!-- Start header area -->
     <header class="header__section mb-20">
         <div class="main__header header__sticky">
@@ -121,179 +122,31 @@
                             </svg>
                         </div>
                         <div class="dropdown__categories--menu border-radius-5 active collapse" id="categoriesAccordion">
+                            {% get_categories as categories %}
                             <ul class="d-none d-lg-block">
+                                {% for category in categories %}
+                                {% get_subcategories category.id as subcategories %}
                                 <li class="categories__menu--items">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='kuzov' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/body.png' %}">
-                                        Кузов
+                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category=category.slug %}">
+                                        <img class="categories__menu--imgicon" src="{{ category.icon.url }}">
+                                        {{ category.name }}
+                                        {% if subcategories|length %}
                                         <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
+                                        {% endif %}
                                     </a>
+                                    {% if subcategories|length %}
                                     <ul class="categories__submenu style2 border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='kuzov' %}"><strong>Кузов</strong></a>
+                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category=category.slug %}"><strong>{{ category.name }}</strong></a>
                                             <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='krila' %}">Крила </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='kapot' %}">Капот </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='bampera' %}">Бампера </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='dveri' %}"> Двері
-                                                </a></li>
+                                                {% for subcategory in subcategories %}
+                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category=subcategory.slug %}">{{ subcategory.name }} </a></li>
+                                                {% endfor %}
                                             </ul>
                                         </li>
                                     </ul>
+                                    {% endif %}
                                 </li>
-                                <li class="categories__menu--items">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='elektronika' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/flash.png' %}">  Електроніка
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='elektronika' %}"><strong>Електронне обладнання</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='bloki' %}">Блоки </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='fari' %}">Фари </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='lihtari' %}">Ліхтарі </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='provodki' %}">Проводки </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='datchiki' %}">Датчики </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='hodova-chastina' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/transmission.png' %}">  Ходова частина
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='hodova-chastina' %}"><strong>Ходова частина</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='kulaki' %}">Кулаки </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='vazheli' %}">Важелі </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='pidramniki' %}">Підрамники </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='piv-osi' %}">Пів осі </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='kardani' %}">Кардани </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='korobki-peredach' %}">Коробки передач </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='reduktori' %}">Редуктори </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='rozdatki' %}">Роздатки </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='motori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/car-engine.png' %}">  Мотори
-                                    </a>
-                                </li>
-                                <li class="categories__menu--items">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='saloni' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/car-seat.png' %}">  Салони
-                                    </a>
-                                </li>
-                                <li class="categories__menu--items">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items-hide">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items-hide">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items-hide">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items-hide">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items-hide">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="categories__menu--items-hide">
-                                    <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                        <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">  Радіатори
-
-                                        <svg class="categories__menu--right__arrow--icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
-                                    </a>
-                                    <ul class="categories__submenu border-radius-10 d-flex justify-content-between">
-                                        <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='radiatori' %}"><strong>Радіатори</strong></a>
-                                            <ul class="categories__submenu--child">
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів </a></li>
-                                                <li class="categories__submenu--child__items"><a class="categories__submenu--child__items--link" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори) </a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -314,88 +167,23 @@
                         <div class="dropdown__categories--menu border-radius-5 active collapse" id="categoriesAccordion2">
                             <nav class="category__mobile--menu">
                                 <ul class="category__mobile--menu_ul">
+                                    {% for category in categories %}
+                                    {% get_subcategories category.id as subcategories %}
                                     <li class="categories__menu--items">
-                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='kuzov' %}">
-                                            <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/body.png' %}">
-                                            Кузов
+                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category=category.slug %}">
+                                            <img class="categories__menu--imgicon" src="{{ category.icon.url }}">
+                                            {{ category.name }}
                                         </a>
+                                        {% if subcategories|length %}
                                         <ul class="category__sub--menu">
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='krila' %}">Крила</a>
+                                            {% for subcategory in subcategories %}
+                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category=subcategory.slug %}">{{ subcategory.name }}</a>
                                             </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='kapot' %}">Капот</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='bampera' %}">Бампера</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='dveri' %}">Двері</a>
-                                            </li>
+                                            {% endfor %}
                                         </ul>
+                                        {% endif %}
                                     </li>
-                                    <li class="categories__menu--items">
-                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='elektronika' %}">
-                                            <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/flash.png' %}">
-                                            Електронне обладнання
-                                        </a>
-                                        <ul class="category__sub--menu">
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='bloki' %}">Блоки</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='fari' %}">Фари</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='lihtari' %}">Ліхтарі</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='provodki' %}">Проводки</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='datchiki' %}">Датчики</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="categories__menu--items">
-                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='hodova-chastina' %}">
-                                            <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/transmission.png' %}">
-                                            Ходова частина
-                                        </a>
-                                        <ul class="category__sub--menu">
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='kulaki' %}">Кулаки</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='vazheli' %}">Важелі</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='pidramniki' %}">Підрамники</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='piv-osi' %}">Пів осі</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='kardani' %}">Кардани</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='korobki-peredach' %}">Коробки передач</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='reduktori' %}">Редуктори</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='rozdatki' %}">Роздатки</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="categories__menu--items">
-                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='motori' %}">
-                                            <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/car-engine.png' %}">
-                                            Мотори
-                                        </a>
-                                    </li>
-                                    <li class="categories__menu--items">
-                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='saloni' %}">
-                                            <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/car-seat.png' %}">
-                                            Салони
-                                        </a>
-                                    </li>
-                                    <li class="categories__menu--items">
-                                        <a class="categories__menu--link" href="{% url 'shop:products_by_category' slug_category='radiatori' %}">
-                                            <img class="categories__menu--imgicon" src="{% static 'img/categories/icon/radiator.png' %}">
-                                            Радіатори
-                                        </a>
-                                        <ul class="category__sub--menu">
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='ventilyator-radiatoriv' %}">Вентилятор радіаторів</a>
-                                            </li>
-                                            <li class="categories__submenu--items"><a class="categories__submenu--items__text" href="{% url 'shop:products_by_category' slug_category='instalyacijna-panel-televizori' %}">Інсталяційна панель (телевізори)</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </nav>
                         </div>

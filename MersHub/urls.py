@@ -15,7 +15,8 @@ urlpatterns = [
     path('order/', include('order.urls', namespace='order')),
     path(
         "robots.txt",
-        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        TemplateView.as_view(
+            template_name="robots.txt", content_type="text/plain"),
     ),
     path('sitemap.xml', sitemap,
          {'sitemaps': {'static': StaticViewSitemap,
@@ -30,4 +31,5 @@ if settings.DEBUG:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,3 +1,4 @@
+from typing import Optional
 from django.contrib.sitemaps import Sitemap
 from shop.models import Category, Product
 
@@ -15,7 +16,7 @@ class AbstractSitemapClass:
     """
 
     changefreq = 'daily'
-    url = None
+    url: Optional[str] = None
 
     def get_absolute_url(self):
         """
@@ -51,9 +52,9 @@ class StaticViewSitemap(Sitemap):
     }
 
     main_sitemaps = []
-    for page in pages.items():
+    for page, url in pages.items():
         sitemap_class = AbstractSitemapClass()
-        sitemap_class.url = pages[page]
+        sitemap_class.url = url
         main_sitemaps.append(sitemap_class)
 
     def items(self):
